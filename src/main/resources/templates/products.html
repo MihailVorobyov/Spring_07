@@ -21,22 +21,25 @@
 
             <label>min</label><input type="number" name="min" value=""/><br>
             <label>max</label><input type="number" name="max" value=""/><br>
-            <input class="btn btn_default" type="submit" value="Отправить">
+            <input type="submit" value="Отправить">
         </form>
     </div>
+
     <div>
         <br>
         <h3>Добавить новый продукт:</h3>
         <form th:action="@{/products}" th:object="${newProduct}" method="post">
-            <label>Название</label><input type="text" th:field="*{title}"v name="title" /><br>
+            <label>Название</label><input type="text" th:field="*{title}" name="title" /><br>
             <label>Цена</label><input type="number" th:field="*{price}" name="price" /><br>
             <input type="submit" value="Добавить">
         </form>
     </div>
+
+    <a href="products/delete">Удалить продукт по id</a>
+
     <div>
         <p th:each="product : ${productList}">[[${product.id}]] [[${product.title}]] - [[${product.price}]] р</p>
     </div>
-
 
 </body>
 </html>

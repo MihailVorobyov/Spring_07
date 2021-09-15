@@ -2,13 +2,11 @@ package ru.vorobyov.shop.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.vorobyov.shop.entities.Product;
 
 import java.util.List;
 
 @Repository
-//@Transactional
 public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	List<Product> findById(long id);
@@ -21,6 +19,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	List<Product> findAll();
 	
-	Product save(Product newProduct);
+	@Override
+	void deleteById(Long aLong);
+	
 
 }

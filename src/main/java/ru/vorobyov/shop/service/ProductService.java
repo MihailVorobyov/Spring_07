@@ -1,25 +1,15 @@
 package ru.vorobyov.shop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Persistent;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.vorobyov.shop.entities.Product;
 import ru.vorobyov.shop.repositories.ProductRepository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-//@Persistent
-//@Transactional
+
 public class ProductService {
-    
-//    @PersistenceContext
-//    private EntityManager em;
-//
+
     @Autowired
     private ProductRepository productRepository;
     
@@ -44,10 +34,11 @@ public class ProductService {
     }
     
     public void add(Product newProduct) {
-//        em.getTransaction().begin();
-//        em.persist(newProduct);
-//        em.getTransaction().commit();
         productRepository.save(newProduct);
     };
+    
+    public void deleteById (Long id) {
+        productRepository.deleteById(id);
+    }
     
 }
