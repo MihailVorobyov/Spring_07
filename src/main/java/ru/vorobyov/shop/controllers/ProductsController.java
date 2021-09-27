@@ -78,7 +78,7 @@ public class ProductsController {
 	
 	//получение товара по id
 	@GetMapping("/products/{id}")
-	private String getProductById(Model model, @PathVariable (name = "id") String id) {
+	private String getProductById(Model model, @PathVariable String id) {
 		
 		Pageable currentPage = PageRequest.of(0, 10);
 		model.addAttribute("productPage", productService.findById(Long.parseLong(id), currentPage));

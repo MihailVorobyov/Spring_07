@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Магазин</title>
+        <link type="text/css" rel="stylesheet" th:href="@{/css/login.css}"/>
+<!--        <link type="text/css" rel="stylesheet" href="../static/css/login.css"/>-->
+    </head>
+
+    <body>
+        <div th:replace="up_menu :: main_menu"></div>
+        <div class="login">
+            <div class="upper">
+                <p class="login_header">login</p>
+            </div>
+            <div class="form">
+                <form th:action="@{/authenticateTheUser}" method="POST">
+
+                    <div>
+                        <div th:if="${param.error} != null">
+                            <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                Invalid username or password
+                            </div>
+                        </div>
+                        <div th:if="${param.logout} != null">
+                            <div class="alert alert-success col-xs-offset-1 col-xs-10">
+                                You have been logged out.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="into_form">
+                        <div class="field">
+                            <img class="user_name_image" src="../static/img/login-24.png" alt="username">
+                            <input type="text" placeholder="Username" />
+                        </div>
+                        <div class="field">
+                            <img class="password_image" src="../static/img/password-24.png" alt="password" />
+                            <input type="password" placeholder="Password" />
+                        </div>
+                        <input class="submit_button" type="submit" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div th:replace="foot_menu :: footer"></div>
+    </body>
+</html>
