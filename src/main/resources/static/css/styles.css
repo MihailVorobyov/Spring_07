@@ -1,0 +1,17 @@
+.delete_button {
+    border: 1px;
+}
+
+.pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start
+}
+
+.pagination {
+    margin: 5px;
+}
+
+.active {
+    font-style: bold;
+}

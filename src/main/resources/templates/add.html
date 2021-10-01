@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Магазин</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+
+<body>
+    <div class="container">
+        <div th:replace="~{navigation :: navi(Shop)}"/>
+
+        <div>
+            <br>
+            <h3>Добавить новый продукт:</h3>
+            <form th:action="@{/shop/products/add}"
+                  th:object="${newProduct}" method="post">
+                <label>Название</label><input type="text" th:field="*{title}" /><br>
+                <label>Цена</label><input type="number" th:field="*{price}" /><br>
+                <input type="submit" value="Добавить">
+            </form>
+
+        </div>
+
+        <div>
+            <p th:text="${addSuccess} == null ? '' : ${addSuccess}" ></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link type="text/css" rel="stylesheet" th:href="@{/resources/css/styles.css}"/>
+</head>
+<body>
+
+<div class="fluid-container" th:fragment="navi(activeTab)">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary ">
+
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                    <a class="nav-link" href="/admin">Admin Dashboard</a>
+                </li>
+                <li class="nav-item" th:classappend="${activeTab == 'Index' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item" th:classappend="${activeTab == 'Shop' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/shop/products}">Products List</a>
+                </li>
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                    <a class="nav-link" href="/shop/products/add">Add product</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="/hello_admin">hello_admin</a>
+                </li>
+
+                <div sec:authorize="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+                </div>
+                <div sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    </li>
+                </div>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="visible-md" style="height:80px;"></div>
+</div>
+
+</body>
+</html>
