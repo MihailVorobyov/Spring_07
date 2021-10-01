@@ -37,21 +37,6 @@
             </form>
         </div>
 
-        <div>
-            <br>
-            <h3>Добавить новый продукт:</h3>
-            <form th:action="@{/shop/products(sort_method=${sort_method},
-                                                             min=${min},
-                                                             max=${max},
-                                                             size=${size},
-                                                             page=${pageNumber})}"
-                  th:object="${newProduct}" method="post">
-                <label>Название</label><input type="text" th:field="*{title}" /><br>
-                <label>Цена</label><input type="number" th:field="*{price}" /><br>
-                <input type="submit" value="Добавить">
-            </form>
-        </div>
-
         <div class="column">
             <table>
                 <thead>
@@ -75,6 +60,7 @@
                 </tr>
                 </tbody>
             </table>
+            <br>
             <div class="pages">
                 <div th:if="${productPage.totalPages > 0}" class="pagination"
                      th:each="pageNumber : ${pageNumbers}">

@@ -13,11 +13,22 @@ public class SecurityController {
 		return "index";
 	}
 	
-	@Secured({"ROLE_ADMIN"})
+	@RequestMapping("/hello_admin")
+	@Secured("ROLE_ADMIN")
+	@ResponseBody
+	private String showHelloAdminPage() {
+		return securedTest();
+	}
+	
 	@RequestMapping("/admin")
 	@ResponseBody
 	private String returnSecurity() {
 		return "admin panel";
+	}
+	
+	
+	private String securedTest() {
+		return "securedTest for ROLE_ADMIN";
 	}
 	
 }

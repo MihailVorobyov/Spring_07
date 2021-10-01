@@ -6,10 +6,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-<!--    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/dist/jquery.min.js}"></script>-->
-<!--    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>-->
-<!--    <script type="text/javascript" th:src="@{/resources/js/main.js}"></script>-->
-<!--    <link type="text/css" rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>-->
     <link type="text/css" rel="stylesheet" th:href="@{/resources/css/styles.css}"/>
 </head>
 <body>
@@ -29,19 +25,24 @@
                 <li class="nav-item" th:classappend="${activeTab == 'Shop' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/shop/products}">Products List</a>
                 </li>
-                <li class="nav-item" th:classappend="${activeTab == 'Add' ? 'active' : ''}">
-                    <a class="nav-link" th:href="@{/shop/products/add}">Add product</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                    <a class="nav-link" href="/shop/products/add">Add product</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="/hello_admin">hello_admin</a>
+                </li>
+
+                <div sec:authorize="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+                </div>
                 <div sec:authorize="isAuthenticated()">
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/logout}">Logout</a>
                     </li>
                 </div>
-                <!--<div sec:authorize="isAnonymous()">-->
 
             </ul>
         </div>
