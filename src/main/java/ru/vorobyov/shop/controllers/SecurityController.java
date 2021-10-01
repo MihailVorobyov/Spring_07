@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class MainController {
+public class SecurityController {
 	
 	@RequestMapping("/")
 	private String showHomePage() {
@@ -14,10 +14,10 @@ public class MainController {
 	}
 	
 	@Secured({"ROLE_ADMIN"})
-	@RequestMapping("/security")
+	@RequestMapping("/admin")
 	@ResponseBody
 	private String returnSecurity() {
-		return "index";
+		return "admin panel";
 	}
 	
 }

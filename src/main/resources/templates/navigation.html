@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+<!--    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/dist/jquery.min.js}"></script>-->
+<!--    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>-->
+<!--    <script type="text/javascript" th:src="@{/resources/js/main.js}"></script>-->
+<!--    <link type="text/css" rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>-->
+    <link type="text/css" rel="stylesheet" th:href="@{/resources/css/styles.css}"/>
+</head>
+<body>
+
+<div class="fluid-container" th:fragment="navi(activeTab)">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary ">
+
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                    <a class="nav-link" href="/admin">Admin Dashboard</a>
+                </li>
+                <li class="nav-item" th:classappend="${activeTab == 'Index' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item" th:classappend="${activeTab == 'Shop' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/shop/products}">Products List</a>
+                </li>
+                <li class="nav-item" th:classappend="${activeTab == 'Add' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/shop/products/add}">Add product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+
+                <div sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    </li>
+                </div>
+                <!--<div sec:authorize="isAnonymous()">-->
+
+            </ul>
+        </div>
+    </nav>
+    <div class="visible-md" style="height:80px;"></div>
+</div>
+
+</body>
+</html>

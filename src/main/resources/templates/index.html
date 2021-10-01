@@ -9,15 +9,10 @@
 </head>
 
 <body>
-    <div>
-        <ul class="navbar">
-            <li>
-                <a href="products" class="nav-item">Список всех продуктов</a>
-            </li>
-            <li sec:authorize="hasRole('ADMIN')"  class="nav-item">
-                <a class="nav-link" href="/admin">Админка</a>
-            </li>
-        </ul>
+    <div class="container">
+
+        <div th:replace="~{navigation :: navi(Index)}"/>
+
     </div>
 </body>
 </html>

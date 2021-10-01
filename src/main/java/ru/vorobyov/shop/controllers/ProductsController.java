@@ -69,11 +69,24 @@ public class ProductsController {
 		return "products";
 	}
 	
-	//создание нового товара [ POST .../app/products ]
-	@PostMapping("/products")
-	private String addProduct(Model model, @ModelAttribute("newProduct") Product newProduct) {
-		productService.add(newProduct);
-		return "redirect:/shop/products";
+	//Страница создания нового товара
+	@GetMapping("/products/add")
+	private String addProductPage(Model model, @ModelAttribute("addSuccess") String addSuccess) {
+		addSuccess = null;
+		model.addAttribute("newProduct", new Product());
+		return "add";
+	}
+	
+	//Сохранение нового товара
+	@PostMapping("/products/add")
+	private String addProductProcessing(Model model, @ModelAttribute("newProduct") Product newProduct) {
+		Product tempProduct = productService.add(newProduct);
+		if (tempProduct != null) {
+			model.addAttribute("addSuccess", "Продукт добавлен");
+		} else {
+			model.addAttribute("addSuccess", "Ошибка при добавлении");
+		}
+		return "add";
 	}
 	
 	//получение товара по id

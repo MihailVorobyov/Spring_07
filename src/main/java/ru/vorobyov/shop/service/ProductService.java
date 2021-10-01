@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import ru.vorobyov.shop.entities.Product;
 import ru.vorobyov.shop.repositories.ProductRepository;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
+
 @Service
 public class ProductService {
     
@@ -31,9 +35,18 @@ public class ProductService {
     public Page<Product> findAll(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
+    
+    public List<Product> findByTitle(String title) {
+        return productRepository.findByTitle(title);
+    }
 
-    public void add(Product newProduct) {
-        productRepository.save(newProduct);
+    public Product add(Product newProduct) {
+        List<Product> pl = findByTitle(newProduct.getTitle());
+        if (pl.isEmpty()) {
+            return productRepository.save(newProduct);
+        }
+
+        return null;
     };
     
     public void deleteById(Long id) {
